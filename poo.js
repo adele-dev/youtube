@@ -95,3 +95,21 @@ function createCardParagraph(authorVideo, nbViewsVideo, element){
     cardParagraph.innerHTML = authorVideo + "<br>" + nbViewsVideo;
     element.appendChild(cardParagraph);
 }
+//----------- RECHERCHE -------------------------------
+
+const inputSearch = document.querySelector("#search");
+inputSearch.addEventListener("input", onInput);
+
+function onInput(event){
+    const searchValue = event.target.value;
+    const videosFiltered = videosList.filter(video => video.title.includes(searchValue));
+    //console.log(videosFiltered);
+
+    row.innerHTML="";
+
+    for(let i = 0; i< videosFiltered.length; i++){
+        createNewVideo(videosFiltered[i]);    
+    }
+    
+}
+
