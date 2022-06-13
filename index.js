@@ -1,5 +1,3 @@
-const row = document.querySelector(".row");
-
 const videos = [
     {
         src:"img/img10.png",
@@ -11,7 +9,7 @@ const videos = [
         src:"img/img1.png",
         title:"Apprendre JavaScript",
         author:"Javascript Lab",
-        nbViews:"1,3 M de vues",
+        nbViews:"1,4 M de vues",
     },
     {
         src:"img/img2.png",
@@ -62,56 +60,84 @@ const videos = [
         nbViews:"6,9 M de vues",
     },
 ];
+//-----------------------------------------------------------------------------------------------------------------------//
 
-function createNewVideo(src, title, author, nbViews){
-    const col = document.createElement("div");
-    col.classList.add("col");
-    row.appendChild(col); 
+const row = document.querySelector(".row");
 
-    const card = document.createElement("div");
-    card.classList.add("card");
-    card.classList.add("shadow-sm");
-    col.appendChild(card); 
-
-    const imgCard = document.createElement("img");
-    imgCard.classList.add("card-img-top");
-    imgCard.src = src;
-    imgCard.style.width="100%";
-    imgCard.style.height= "205px";
-    card.appendChild(imgCard);
-
-    const cardBody = document.createElement("div");
-    cardBody.classList.add("card-body");
-    card.appendChild(cardBody); 
-
-    const cardText = document.createElement("div");
-    cardText.classList.add("card-text");
-    cardBody.appendChild(cardText); 
-
-    const cardTitle = document.createElement("h5");
-    cardTitle.innerHTML = title;
-    cardText.appendChild(cardTitle);
-
-    const cardParagraph = document.createElement("p");
-    cardParagraph.innerHTML = author + "<br>" + nbViews;
-    cardText.appendChild(cardParagraph);
+function createNewVideo(src, title, author, nbViews){ // On peut aussi envoyer en paramètre un objet
+    const col = createColumn();
+    const card = createCard(col);
+    createImgCard(src, card);    
+    const cardBody = createCardBody(card);  
+    const cardText = createCardText(cardBody);
+    createCardTitle(title, cardText);
+    createCardParagraph(author, nbViews, cardText);
 }
 
 for(let i = 0; i< videos.length; i++){
     createNewVideo(videos[i].src, videos[i].title, videos[i].author, videos[i].nbViews);
+    
 }
 
 //-----------------------------------------------------------------------------------------------------------------------//
+function createColumn(){
+    const col = document.createElement("div");
+    col.classList.add("col");
+    row.appendChild(col); 
+    return col;
+}
 
-//ÉTAPES EN POO
-/*
+function createCard(element){
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.classList.add("shadow-sm");
+    element.appendChild(card); 
+    return card;    
+}
 
+function createImgCard(source, element){
+    const imgCard = document.createElement("img");
+    imgCard.classList.add("card-img-top");
+    imgCard.src = source;
+    imgCard.style.width="100%";
+    imgCard.style.height= "205px";
+    element.appendChild(imgCard);
+    //return imgCard;
+}
+
+function createCardBody(element){
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+    element.appendChild(cardBody); 
+    return cardBody;
+}
+
+function createCardText(element){
+    const cardText = document.createElement("div");
+    cardText.classList.add("card-text");
+    element.appendChild(cardText);
+    return cardText;
+}
+
+function createCardTitle(titleH5, element){
+    const cardTitle = document.createElement("h5");
+    cardTitle.innerHTML = titleH5;
+    element.appendChild(cardTitle);
+    //return cardTitle;
+}
+
+function createCardParagraph(authorVideo, nbViewsVideo, element){
+    const cardParagraph = document.createElement("p");
+    cardParagraph.innerHTML = authorVideo + "<br>" + nbViewsVideo;
+    element.appendChild(cardParagraph);
+}
+//-----------------------------------------------------------------------------------------------------------------------//
+/*ÉTAPES EN POO
 1 - CRÉER LA CLASSE
 2 - INSTANCIER LES OBJETS DEPUIS LA CLASSE (avec les NEW)
 3 - FAIRE UN TABLEAU
 4 - ENVOYER LES OBJETS INSTANCIÉS DANS LE TABLEAU
-5 - BOUCLER SUR LE TABLEAU (la boucler sert à injecter les objets du tableau dans le HTML)
-
+5 - BOUCLER SUR LE TABLEAU (la boucle sert à injecter les objets du tableau dans le HTML)
 */
 
 /* EXPLICATIONS RETURN
