@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { VideoCard } from '../models/videoCard.model';
 
 @Component({
@@ -7,6 +7,9 @@ import { VideoCard } from '../models/videoCard.model';
   styleUrls: ['./container.component.scss']
 })
 export class ContainerComponent implements OnInit {
+  @Input() inputSearchedBar:string = "";
+  inputSearched:string = "";
+  
   videosList:VideoCard[] = [
     new VideoCard("assets/img/img1.png", "Les Bobo's", "PalmaShow", 7000000, 'il y a 2 mois',false),
     new VideoCard("assets/img/img2.png", "Fous rires cultes", "INA", 560000, 'il y a 2 mois',false),
@@ -20,9 +23,20 @@ export class ContainerComponent implements OnInit {
     new VideoCard("assets/img/img10.png", "Apprendre JS", "Javascript Lab", 125000, 'il y a 2 mois',false),
   ]
 
+  videosListFiltered:VideoCard[] = [...this.videosList];
+
+  
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  fetchValueSearched(inputValue:string):void{
+    this.videosListFiltered = this.videosList
+    .filter(video => video.title.includes(inputValue));
+    //this.inputSearched = inputValue;
+    console.log(inputValue);
   }
 
 }
