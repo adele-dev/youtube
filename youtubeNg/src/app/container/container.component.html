@@ -2,13 +2,12 @@
   
     <div class="album py-5 bg-light">
       <div class="container">
-        <div class="input-group mb-4" style="width:25%;">
-          <input type="search" id="search" class="form-control rounded" placeholder="Rechercher" aria-label="Search" aria-describedby="search-addon" />
-          <button type="button" class="btn btn-outline-primary">valider</button>
-        </div>
+        <app-search-bar 
+          (sendValueInput)="fetchValueSearched($event)">
+        </app-search-bar>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
 
-          <app-card *ngFor="let video of videosList" [videoCard]="video">
+          <app-card *ngFor="let video of videosListFiltered" [videoCard]="video">
           </app-card>
           
         </div>
