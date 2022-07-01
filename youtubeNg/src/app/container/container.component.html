@@ -9,7 +9,9 @@
 
           <app-card *ngFor="let video of videosListFiltered" [videoCard]="video">
           </app-card>
-          
+          <div *ngIf="videosListFiltered.length === 0" style="width:100%">
+            <p>Il n'y a pas de vidéos correspondant à votre recherche</p>
+          </div>
         </div>
       </div>
     </div>

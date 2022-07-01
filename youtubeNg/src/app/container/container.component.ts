@@ -31,7 +31,6 @@ export class ContainerComponent implements OnInit {
 
   fetchValueSearched(inputValue:string):void{
     this.videosListFiltered = this.videosList.filter(video => video.title.includes(inputValue));
-    console.log(inputValue);
   }
 
 }
