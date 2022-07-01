@@ -5,7 +5,11 @@
       <div class="card-text">
           <h5>{{videoCard.title}}</h5>
           <p>
-            {{videoCard.author}}<br>
+            {{videoCard.author}}
+          </p>
+          <p [ngStyle]="{'color': videoCard.nbViews >= 1000000 ? 
+            'salmon': (videoCard.nbViews < 1000000 && videoCard.nbViews >= 500000) ? 'green'
+            : 'grey'}">
             {{videoCard.nbViews}} de vues
           </p>
       </div>
