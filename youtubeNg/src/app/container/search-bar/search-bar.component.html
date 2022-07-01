@@ -1,0 +1,16 @@
+<div class="input-group mb-4" style="width:25%;">
+    <input type="search" 
+           id="search" 
+           class="form-control rounded" 
+           placeholder="Rechercher" 
+           aria-label="Search" 
+           aria-describedby="search-addon" 
+           [(ngModel)]="valueInputSearched"
+    />
+    <button type="button" 
+            class="btn btn-outline-primary" 
+            (click) = "sendSearchedValue()"
+    >
+            Valider
+    </button>
+</div>
