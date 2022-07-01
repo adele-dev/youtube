@@ -8,7 +8,9 @@
            [(ngModel)]="valueInputSearched"
     />
     <button type="button" 
-            class="btn btn-outline-primary">
+            class="btn btn-outline-primary" 
+            (click) = "sendSearchedValue()"
+    >
             Valider
     </button>
 </div>
